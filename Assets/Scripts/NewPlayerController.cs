@@ -14,12 +14,17 @@ public class NewPlayerController : MonoBehaviour
     public float smoothTime = 30f;
     private float velocity;
 
+    public float acceleration = 0f;
+    public float accelerationFactor = 0f;
+    public float maxAcceleration;
+    public float accelerationSlowDownFactor;
+
     public float jumpForce = 10f;
     public float gravity = -10f;
 
     public float distance;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -29,12 +34,12 @@ public class NewPlayerController : MonoBehaviour
     void Update()
     {
 
-        characterController.Move(direction * Time.fixedDeltaTime);
+        characterController.Move(direction * Time.fixedDeltaTime); //Vector driving player movement 
 
-        direction.z = forwardSpeed; 
-        distance = transform.position.z;
+        direction.z = forwardSpeed;  //Default movement forward
+        distance = (transform.position.z)/10; //calculating distance for UI
 
-        if(characterController.isGrounded)
+        if (characterController.isGrounded)
         {
             direction.y = -1;
             if (Input.GetKeyDown(KeyCode.Space))
@@ -62,11 +67,7 @@ public class NewPlayerController : MonoBehaviour
                 currentLane = 2;
             }
         }
-
-        
-        
-        //Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
-        
+        // Smooth lane Switching (only resolves x component of vectors)
         Vector3 targetPosition = new Vector3(0,transform.position.y,transform.position.z);
         if (currentLane == 0)
         {
@@ -79,10 +80,7 @@ public class NewPlayerController : MonoBehaviour
         }
 
 
-        //Vector3 tempPos = transform.position;
-        //tempPos.x = Mathf.Lerp(transform.position.x, targetPosition.x, smoothTime);
-        //transform.position = tempPos;
-
+        // Smooth lane Switching (custom LERPing and resolving z component of vector)
         if (transform.position != targetPosition)
         {
             Vector3 diff = targetPosition - transform.position;
@@ -93,10 +91,20 @@ public class NewPlayerController : MonoBehaviour
                 characterController.Move(diff);
         }
 
+        characterController.center = characterController.center; //resets the character controller's center so that collisions work properly (since movement is transform based) 
+        
+        /*
+        forwardSpeed += acceleration;
+        acceleration += accelerationFactor;
+        accelerationFactor -= accelerationSlowDownFactor;
+        if (accelerationFactor <= 0) { 
+        
+            acceleration = 0;
+            accelerationFactor = 0;
+            accelerationSlowDownFactor = 0;
 
-        //transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
-        //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-        characterController.center = characterController.center;
+        }
+        */
     }
 
     private void FixedUpdate()
@@ -114,8 +122,10 @@ public class NewPlayerController : MonoBehaviour
         if (hit.transform.tag == "Death")
         {
             //He is Dead
+            direction.y = 0;
             forwardSpeed = 0;
             GameMnger.isGameOver = true;
+            
         }
     }
 }
