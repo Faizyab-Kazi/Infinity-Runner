@@ -112,11 +112,6 @@ public class NewPlayerController : MonoBehaviour
         
     }
 
-    private void Jump()
-    {
-        direction.y = jumpForce;
-    }
-
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.transform.tag == "Death")
@@ -128,4 +123,13 @@ public class NewPlayerController : MonoBehaviour
             
         }
     }
+    private void Jump()
+    {
+        direction.y = jumpForce;
+    }
+    private void playerMove()
+    {
+
+    }
+
 }

@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 2129742338}
-  smoothTime: 0.05
+  smoothTime: 0.03
   zDepth: 10.92
   yOffset: 5.14
 --- !u!1 &967372370
