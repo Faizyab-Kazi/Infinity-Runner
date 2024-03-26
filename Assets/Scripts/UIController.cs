@@ -7,10 +7,14 @@ public class UIController : MonoBehaviour
 {
     NewPlayerController player;
     Text distanceText;
+    Text bestText;
+    private int highScore;
+
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<NewPlayerController>();
         distanceText = GameObject.Find("DistanceText").GetComponent<Text>();
+       
     }
 
     // Start is called before the first frame update
@@ -24,5 +28,6 @@ public class UIController : MonoBehaviour
     {
         int distance = (int)player.distance; 
         distanceText.text = distance.ToString() + "m";
+        
     }
 }

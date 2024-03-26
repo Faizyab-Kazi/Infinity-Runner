@@ -8,6 +8,7 @@ public class GameMnger : MonoBehaviour
     // Start is called before the first frame update
     public static bool isGameOver;
     public GameObject gameOverPanel;
+
     void Start()
     {
         isGameOver = false;
@@ -20,8 +21,7 @@ public class GameMnger : MonoBehaviour
         if (isGameOver)
         {
             gameOverPanel.SetActive(true);
-
-            if(Input.GetKeyDown(KeyCode.Y) && isGameOver)
+            if (Input.GetKeyDown(KeyCode.Y) && isGameOver)
             {
                 SceneManager.LoadScene("SampleScene");
             }

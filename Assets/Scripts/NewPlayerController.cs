@@ -24,11 +24,14 @@ public class NewPlayerController : MonoBehaviour
 
     public float distance;
     public Animator animator;
-
+    public bool isAlive=true;
+    public float highScore;
     
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator.SetBool("isGrounded", true);
+        highScore = PlayerPrefs.GetFloat("highscore", 0);
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class NewPlayerController : MonoBehaviour
         direction.z = forwardSpeed;  //Default movement forward
         distance = (transform.position.z)/10; //calculating distance for UI
 
+        if (isAlive) { 
         if (characterController.isGrounded)
         {
             animator.SetBool("isGrounded", true);
@@ -52,7 +56,7 @@ public class NewPlayerController : MonoBehaviour
         }else
         {
             direction.y -= gravity * Time.deltaTime;
-            
+            animator.SetBool("isGrounded", false);
         }
 
         if (Input.GetKeyDown(KeyCode.A)) {
@@ -71,9 +75,9 @@ public class NewPlayerController : MonoBehaviour
                 currentLane = 2;
             }
         }
+        }
 
-        
-        // Smooth lane Switching (only resolves x component of vectors)
+        // lane Switching (only resolves x component of vectors)
         Vector3 targetPosition = new Vector3(0,transform.position.y,transform.position.z);
         if (currentLane == 0)
         {
@@ -86,7 +90,7 @@ public class NewPlayerController : MonoBehaviour
         }
 
 
-        // Smooth lane Switching (custom LERPing and resolving z component of vector)
+        // Smoothing lane Switching (custom LERPing and resolving z component of vector)
         if (transform.position != targetPosition)
         {
             Vector3 diff = targetPosition - transform.position;
@@ -98,9 +102,10 @@ public class NewPlayerController : MonoBehaviour
         }
 
         characterController.center = characterController.center; //resets the character controller's center so that collisions work properly (since movement is transform based) 
-        
+
+
         /*
-        forwardSpeed += acceleration;
+        forwardSpeed *= acceleration;
         acceleration += accelerationFactor;
         accelerationFactor -= accelerationSlowDownFactor;
         if (accelerationFactor <= 0) { 
@@ -111,12 +116,15 @@ public class NewPlayerController : MonoBehaviour
 
         }
         */
+
+
+        highScore = distance;
+        if (highScore < distance)
+        {
+            PlayerPrefs.SetFloat("highscore", highScore);
+        }
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -126,7 +134,11 @@ public class NewPlayerController : MonoBehaviour
             direction.y = 0;
             forwardSpeed = 0;
             GameMnger.isGameOver = true;
+            isAlive = false;
+            PlayerPrefs.Save();
             
+
+
         }
     }
     private void Jump()
