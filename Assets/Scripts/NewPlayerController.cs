@@ -23,6 +23,7 @@ public class NewPlayerController : MonoBehaviour
     public float gravity = -10f;
 
     public float distance;
+    public Animator animator;
 
     
     void Start()
@@ -41,14 +42,17 @@ public class NewPlayerController : MonoBehaviour
 
         if (characterController.isGrounded)
         {
+            animator.SetBool("isGrounded", true);
             direction.y = -1;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
+                animator.SetBool("isGrounded", false);
             } 
         }else
         {
             direction.y -= gravity * Time.deltaTime;
+            
         }
 
         if (Input.GetKeyDown(KeyCode.A)) {
@@ -67,6 +71,8 @@ public class NewPlayerController : MonoBehaviour
                 currentLane = 2;
             }
         }
+
+        
         // Smooth lane Switching (only resolves x component of vectors)
         Vector3 targetPosition = new Vector3(0,transform.position.y,transform.position.z);
         if (currentLane == 0)
