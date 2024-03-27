@@ -47,16 +47,19 @@ public class NewPlayerController : MonoBehaviour
         if (characterController.isGrounded)
         {
             animator.SetBool("isGrounded", true);
-            direction.y = -1;
+
+                direction.y = -1;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
                 animator.SetBool("isGrounded", false);
+                
             } 
         }else
         {
             direction.y -= gravity * Time.deltaTime;
             animator.SetBool("isGrounded", false);
+                
         }
 
         if (Input.GetKeyDown(KeyCode.A)) {

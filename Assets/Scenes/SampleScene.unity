@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -154,10 +154,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooftops:
   - {fileID: 7727310629439361764, guid: 04e3c227abe31f341922c6edf75f9081, type: 3}
+  - {fileID: 7727310629439361764, guid: 62677ee58ccb019408f85374b8e4be8b, type: 3}
+  - {fileID: 7727310629439361764, guid: b91b20bb2b1688245b75bdf15634473a, type: 3}
   zSpawn: 0
   tileLength: 60
   playerTransform: {fileID: 2129742339}
-  noOfTiles: 0
+  noOfTiles: 3
   heightThresholdMin: -10
   heightThresholdMax: 10
 --- !u!4 &47647569
@@ -1277,7 +1279,7 @@ Transform:
   m_GameObject: {fileID: 2129742338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.7}
+  m_LocalPosition: {x: 0, y: 2.68, z: 0.7}
   m_LocalScale: {x: 1.5739548, y: 1.5739548, z: 1.5739548}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1297,14 +1299,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb393bcd120cc044ba52e908950aa65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 7
+  forwardSpeed: 4
   laneDistance: 10
   smoothTime: 70
   acceleration: 1
   accelerationFactor: 1
   maxAcceleration: 5
   accelerationSlowDownFactor: 0.005
-  jumpForce: 6
+  jumpForce: 5
   gravity: 20
   distance: 0
   animator: {fileID: 977215436}
