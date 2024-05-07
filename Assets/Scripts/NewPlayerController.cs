@@ -38,9 +38,9 @@ public class NewPlayerController : MonoBehaviour
     void Update()
     {
 
-        characterController.Move(direction * Time.fixedDeltaTime); //Vector driving player movement 
+        characterController.Move(direction); //Vector driving player movement 
 
-        direction.z = forwardSpeed;  //Default movement forward
+        direction.z = forwardSpeed * Time.deltaTime;  //Default movement forward
         distance = (transform.position.z)/10; //calculating distance for UI
 
         if (isAlive) { 
