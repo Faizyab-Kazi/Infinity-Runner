@@ -1,0 +1,6 @@
+Important for you to read
+
+IF YOU'RE GONNA USE THE RIG, READ THIS
+DON'T JUST EXPORT THE RIG, I recommend you copying the rig from that blend file, to your project. Keep in mind, that rig is ONLY for the meshes that comes in this folder/zip. It may be only for that rig, but if you want to use this for another human mesh( or whatever your using ), you'll have to edit it around.
+
+As I said, the original model was made by ARSHLEVON, the edited models were done by me. Enjoy, YOU HAVE PERMISSION TO USE THIS, IN A GAME, FILM, OR WHATEVER PROJECT YOU'RE WORKING ON, just give credit.

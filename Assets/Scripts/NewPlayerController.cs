@@ -48,7 +48,7 @@ public class NewPlayerController : MonoBehaviour
         {
             animator.SetBool("isGrounded", true);
 
-                direction.y = -1;
+                direction.y = (float)-0.01; //REFER TO HERE FOR Y DIR THING
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();

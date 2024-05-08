@@ -14,12 +14,15 @@ public class NewBehaviourScript : MonoBehaviour
     public int noOfTiles = 3;
     private List<GameObject> activeRoofs = new List<GameObject>();
     public int heightThresholdMin, heightThresholdMax;
+    public float SpawnDistanceFromPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         SpawnRoof(0);
         SpawnRoof(0);
+        
     }
 
     // Update is called once per frame
@@ -30,6 +33,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             SpawnRoof(Random.Range(0,noOfTiles-1));
             DeleteRoof();
+            
         }
         
     }
@@ -38,6 +42,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         //GameObject current = Instantiate(rooftops[roofIndex], transform.forward * zSpawn, transform.rotation);
         GameObject current = Instantiate(rooftops[roofIndex], new Vector3(0, Random.Range( heightThresholdMin, heightThresholdMax),1 * zSpawn), transform.rotation);
+        //GameObject current = Instantiate(rooftops[roofIndex], new Vector3(0, Random.Range(heightThresholdMin, heightThresholdMax), 1 * (zSpawn + spawnDistFromPlayer)), transform.rotation);
         zSpawn += tileLength;
         activeRoofs.Add(current);
     }
