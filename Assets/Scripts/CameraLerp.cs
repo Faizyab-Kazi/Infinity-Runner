@@ -20,7 +20,8 @@ public class CameraLerp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(followTarget.transform.position.x, yOffset, followTarget.transform.position.z -zDepth), ref velocity, smoothTime);
+        
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(followTarget.transform.position.x, followTarget.transform.position.y + yOffset, followTarget.transform.position.z -zDepth), ref velocity, smoothTime);
         
     }
 }
