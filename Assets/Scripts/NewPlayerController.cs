@@ -18,6 +18,7 @@ public class NewPlayerController : MonoBehaviour
     private float velocity;
 
     public float acceleration = 0f;
+    public float jumpAccelerationDampening;
     
 
     public float jumpForce = 10f;
@@ -138,7 +139,7 @@ public class NewPlayerController : MonoBehaviour
         //Jumpforce adjusting
         if (jumpForce < maxJumpForce)
         {
-            jumpForce += (forwardSpeed * Time.deltaTime)/100;
+            jumpForce += (forwardSpeed * Time.deltaTime)/jumpAccelerationDampening;
         }else if (jumpForce > maxJumpForce)
         {
 

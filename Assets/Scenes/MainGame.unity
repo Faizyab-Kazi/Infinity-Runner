@@ -1068,7 +1068,7 @@ MonoBehaviour:
   - {fileID: 888599812263304497, guid: 3464343af133505489ad356380c7fb5e, type: 3}
   zSpawn: 0
   tileLength: 30
-  maxTileLength: 45
+  maxTileLength: 48
   playerTransform: {fileID: 2129742339}
   noOfTiles: 4
   heightThresholdMin: -2
@@ -1587,6 +1587,26 @@ PrefabInstance:
     - target: {fileID: 7885343736013802184, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
+      propertyPath: maxSpeed
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
+      propertyPath: jumpForce
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
+      propertyPath: acceleration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
+      propertyPath: maxJumpForce
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
+      propertyPath: jumpAccelerationDampening
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 9070979739885509745, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
       propertyPath: m_LocalPosition.x
