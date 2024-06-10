@@ -27,6 +27,7 @@ public class NewPlayerController : MonoBehaviour
     public float distance;
     public Animator animator;
     public bool isAlive=true;
+    public bool isHitting = false;
     public float highScore;
 
     
@@ -91,8 +92,21 @@ public class NewPlayerController : MonoBehaviour
                 currentLane = 2;
             }
                 if (characterController.isGrounded) { animator.Play("SideStepRight"); }
-            }
         }
+
+            
+           /* 
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+               
+                if (characterController.isGrounded){
+                    isHitting = true; 
+                    animator.SetBool("IsHitting",true); 
+                }
+            } */
+        }
+
+
 
         // lane Switching (only resolves x component of vectors)
         Vector3 targetPosition = new Vector3(0,transform.position.y,transform.position.z);

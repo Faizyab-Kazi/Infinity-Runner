@@ -16,4 +16,19 @@ public class Menu : MonoBehaviour
 
         Application.Quit();
     }
+
+    public void Instructions()
+    {
+
+        SceneManager.LoadScene("Instructions"); ;
+    }
+
+    public void GoBack()
+    {
+
+        SceneManager.LoadScene("Menu"); ;
+    }
+
+   
+
 }
