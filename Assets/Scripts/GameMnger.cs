@@ -23,7 +23,7 @@ public class GameMnger : MonoBehaviour
             gameOverPanel.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Y) && isGameOver)
             {
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("MainGame");
             }
         }
     }

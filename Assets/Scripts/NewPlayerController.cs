@@ -7,6 +7,9 @@ public class NewPlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 direction;
     public float forwardSpeed;
+    public float maxSpeed;
+
+    public float animationDampening = .1f;
 
     public float laneDistance = 3;
     private int currentLane = 1;
@@ -15,17 +18,17 @@ public class NewPlayerController : MonoBehaviour
     private float velocity;
 
     public float acceleration = 0f;
-    public float accelerationFactor = 0f;
-    public float maxAcceleration;
-    public float accelerationSlowDownFactor;
+    
 
     public float jumpForce = 10f;
+    public float maxJumpForce;
     public float gravity = -10f;
 
     public float distance;
     public Animator animator;
     public bool isAlive=true;
     public float highScore;
+
     
     void Start()
     {
@@ -40,7 +43,15 @@ public class NewPlayerController : MonoBehaviour
 
         characterController.Move(direction); //Vector driving player movement 
 
-        direction.z = forwardSpeed * Time.deltaTime;  //Default movement forward
+        //Acceleration
+        if ((forwardSpeed < maxSpeed) && (isAlive)){
+            forwardSpeed += acceleration * Time.deltaTime;
+        }
+
+        float speedPercent = forwardSpeed/maxSpeed;
+        animator.SetFloat("PlayerVelocity",speedPercent,Time.deltaTime,animationDampening);
+        
+        direction.z = forwardSpeed * Time.deltaTime;  //Resultant driving forward movement
         distance = (transform.position.z)/10; //calculating distance for UI
 
         if (isAlive) { 
@@ -57,7 +68,7 @@ public class NewPlayerController : MonoBehaviour
             } 
         }else
         {
-            direction.y -= gravity * Time.deltaTime;
+            direction.y -= (gravity * Time.deltaTime);
             animator.SetBool("isGrounded", false);
                 
         }
@@ -68,6 +79,8 @@ public class NewPlayerController : MonoBehaviour
             {
                 currentLane = 0;
             }
+                if (characterController.isGrounded) { animator.Play("SideStepLeft"); }
+                
         }
 
         if (Input.GetKeyDown(KeyCode.D))
@@ -77,7 +90,8 @@ public class NewPlayerController : MonoBehaviour
             {
                 currentLane = 2;
             }
-        }
+                if (characterController.isGrounded) { animator.Play("SideStepRight"); }
+            }
         }
 
         // lane Switching (only resolves x component of vectors)
@@ -104,21 +118,22 @@ public class NewPlayerController : MonoBehaviour
                 characterController.Move(diff);
         }
 
-        characterController.center = characterController.center; //resets the character controller's center so that collisions work properly (since movement is transform based) 
+        characterController.center = characterController.center; //resets the character controller's center after every single transform so that collisions work properly
 
-
-        /*
-        forwardSpeed *= acceleration;
-        acceleration += accelerationFactor;
-        accelerationFactor -= accelerationSlowDownFactor;
-        if (accelerationFactor <= 0) { 
         
-            acceleration = 0;
-            accelerationFactor = 0;
-            accelerationSlowDownFactor = 0;
+        //Jumpforce adjusting
+        if (jumpForce < maxJumpForce)
+        {
+            jumpForce += (forwardSpeed * Time.deltaTime)/100;
+        }else if (jumpForce > maxJumpForce)
+        {
 
+            jumpForce = maxJumpForce;
         }
-        */
+        
+       
+       
+        
 
 
         highScore = distance;
