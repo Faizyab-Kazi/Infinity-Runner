@@ -1,6 +1,0 @@
-Designed around the NES gamepad (easy to understand input layout)
-Linear progression (level based system e.g Super Mario World's overworld)
-same healthbar for both players
-each level should have it's own gimmick (a different item or a unique environmental challenge maybe?)
-small bitesize levels
-Asynchronous level design??
