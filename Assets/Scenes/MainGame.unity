@@ -1613,11 +1613,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
       propertyPath: maxSpeed
-      value: 60
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
       propertyPath: jumpForce
-      value: 0.08
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8621890429284756892, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
       propertyPath: acceleration
@@ -1676,7 +1676,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5128158658427421461, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0e8e55eed33435439caf5c4144852e4, type: 3}

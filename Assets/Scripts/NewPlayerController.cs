@@ -11,9 +11,9 @@ public class NewPlayerController : MonoBehaviour
     public float forwardSpeed;
     public float maxSpeed;
     
-    public LayerMask enemyLayers;
+    //public LayerMask enemyLayers;
     //public Transform hitbox;
-    public float attackRange;
+    //public float attackRange;
 
 
     public float animationDampening = .1f;
@@ -107,14 +107,6 @@ public class NewPlayerController : MonoBehaviour
 
             
             
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-               
-                if (characterController.isGrounded){
-                    Attack();
-                    
-                }
-            } 
         }
 
 
@@ -192,12 +184,7 @@ public class NewPlayerController : MonoBehaviour
         direction.y = jumpForce;
     }
 
-    private void Attack() {
-
-        animator.SetTrigger("IsHitting");
-        //Collider[] hitEnemies = Physics.OverlapSphere(hitbox.position, attackRange, enemyLayers);
-        
-    }
+    
 
     /*private void OnDrawGizmosSelected()
     {
