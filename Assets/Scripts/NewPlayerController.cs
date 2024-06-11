@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class NewPlayerController : MonoBehaviour
 {
     private CharacterController characterController;
+    
     private Vector3 direction;
     public float forwardSpeed;
     public float maxSpeed;
+    
+    public LayerMask enemyLayers;
+    //public Transform hitbox;
+    public float attackRange;
+
 
     public float animationDampening = .1f;
 
@@ -28,7 +35,6 @@ public class NewPlayerController : MonoBehaviour
     public float distance;
     public Animator animator;
     public bool isAlive=true;
-    public bool isHitting = false;
     public float highScore;
 
     
@@ -36,6 +42,10 @@ public class NewPlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator.SetBool("isGrounded", true);
+        highScore = PlayerPrefs.GetFloat("highscore",0);
+    }
+    private void Awake()
+    {
         highScore = PlayerPrefs.GetFloat("highscore", 0);
     }
 
@@ -96,15 +106,15 @@ public class NewPlayerController : MonoBehaviour
         }
 
             
-           /* 
+            
             if (Input.GetKeyDown(KeyCode.S))
             {
                
                 if (characterController.isGrounded){
-                    isHitting = true; 
-                    animator.SetBool("IsHitting",true); 
+                    Attack();
+                    
                 }
-            } */
+            } 
         }
 
 
@@ -145,17 +155,13 @@ public class NewPlayerController : MonoBehaviour
 
             jumpForce = maxJumpForce;
         }
-        
-       
-       
+
+
+
         
 
 
-        highScore = distance;
-        if (highScore < distance)
-        {
-            PlayerPrefs.SetFloat("highscore", highScore);
-        }
+        
     }
 
 
@@ -164,10 +170,17 @@ public class NewPlayerController : MonoBehaviour
         if (hit.transform.tag == "Death")
         {
             //He is Dead
+            
             direction.y = 0;
             forwardSpeed = 0;
             GameMnger.isGameOver = true;
             isAlive = false;
+            if (distance > PlayerPrefs.GetFloat("highscore",0))
+            {
+                highScore = distance;
+                PlayerPrefs.SetFloat("highscore", distance);
+                
+            }
             PlayerPrefs.Save();
             
 
@@ -178,6 +191,24 @@ public class NewPlayerController : MonoBehaviour
     {
         direction.y = jumpForce;
     }
+
+    private void Attack() {
+
+        animator.SetTrigger("IsHitting");
+        //Collider[] hitEnemies = Physics.OverlapSphere(hitbox.position, attackRange, enemyLayers);
+        
+    }
+
+    /*private void OnDrawGizmosSelected()
+    {
+        if (hitbox == null) {
+            return;
+        }
+        
+        Gizmos.DrawSphere(hitbox.position,attackRange);
+    }*/
+
+
     private void playerMove()
     {
 

@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<NewPlayerController>();
         distanceText = GameObject.Find("DistanceText").GetComponent<Text>();
+        bestText = GameObject.Find("BestText").GetComponent <Text>();
        
     }
 
@@ -28,6 +29,7 @@ public class UIController : MonoBehaviour
     {
         int distance = (int)player.distance; 
         distanceText.text = distance.ToString() + "m";
+        bestText.text = "BEST: "+ player.highScore.ToString("#.00") + "m";
         
     }
 }
